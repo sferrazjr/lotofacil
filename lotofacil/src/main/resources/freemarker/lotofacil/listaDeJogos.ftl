@@ -20,8 +20,9 @@
     <br>
     <a href=/lotofacil/index>Inicio</a>
     
-<div id="list">
-    <div class="scroll">
+<div id="list" style="border:1px solid black;">
+    
+    <div class="scroll" style="border:1px solid red;">
 
 
    <#list lista["jogos"] as jogoLotoFacil>
@@ -48,24 +49,21 @@
 
     </#list>
 
+</div>
 <#assign nextPage=(nextPage?number+1)>
 
 <a href="/lotofacil/listar/${nextPage}">next page</a>
 
 
-</div>
 
 
 
 	</div>
     
-
 <script>
-$('.scroll').jscroll({
-contentSelector: '#list',
-autoTrigger: false
-});
+$( ".scroll" ).append( "<p>Test</p>" );
 </script>
+
 
     </body>
     
