@@ -22,46 +22,49 @@
     
 <div id="list" style="border:1px solid black;">
     
+
     <div class="scroll" style="border:1px solid red;">
+		<#include "/lotofacil/listaDeJogosInclude.ftl" />	
+	</div>
 
-
-   <#list lista["jogos"] as jogoLotoFacil>
-
-        &nbsp;${jogoLotoFacil.concurso}&nbsp;
-		&nbsp;${jogoLotoFacil.data?date}&nbsp;
-		&nbsp;${jogoLotoFacil.ganhadores}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[0]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[1]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[2]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[3]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[4]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[5]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[6]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[7]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[8]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[9]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[10]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[11]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[12]}&nbsp;
-		&nbsp;${jogoLotoFacil.bolas[13]}&nbsp;		
-		&nbsp;${jogoLotoFacil.bolas[14]}&nbsp;
-<br>
-
-    </#list>
-
-</div>
 <#assign nextPage=(nextPage?number+1)>
+
+<form id="nextPageForm" action="/lotofacil/listar/${nextPage}" method="get">
+	<input type="submit" value="post ${nextPage}" />
+	
+</form>
+
 
 <a href="/lotofacil/listar/${nextPage}">next page</a>
 
-
+<input type="button" value="next" class="buttonNext"/>
 
 
 
 	</div>
+	
+	
+<script type="text/javascript">
+    var frm = $('#nextPageForm');
+    frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                $(".scroll" ).append( data );
+            }
+        });
+
+        ev.preventDefault();
+    });
+</script>	
     
 <script>
-$( ".scroll" ).append( "<p>Test</p>" );
+$(".scroll" ).append( "<p>Test</p>" );
+$(".buttonNext").click(function () {
+$(".scroll").append("New Content!");
+});
 </script>
 
 
