@@ -1,12 +1,11 @@
 package br.com.jogatina.lotofacil.web;
 
-import java.text.SimpleDateFormat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,15 +41,28 @@ public class ManterConcursoController {
 	}
 	
 	@RequestMapping(value = "/listar/{page}", method = RequestMethod.GET)
-	public String listarPageable(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer page ){
+	public String listar(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer page, Model model ){
 		
 		Pageable pageable = new PageRequest(page, 50, new Sort(Sort.Direction.ASC, "concurso"));
 		
-		//lista.addAttribute( "jogos", lotoFacilRepository.findAll(new Sort(Sort.Direction.ASC, "concurso")) );
-		
 		lista.addAttribute( "jogos", lotoFacilRepository.findAll(pageable).getContent());
+		
+		model.addAttribute("pagina", ++page);
 		
 		return "lotofacil/listaDeJogos";
 	}
+	
+	@RequestMapping(value = "/listarInclude/{page}", method = RequestMethod.GET)
+	public String listarPageable(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer page, Model model){
+		
+		Pageable pageable = new PageRequest(page, 50, new Sort(Sort.Direction.ASC, "concurso"));
+		
+		lista.addAttribute( "jogos", lotoFacilRepository.findAll(pageable).getContent());
+		
+		model.addAttribute("pagina", ++page);
+		
+		return "lotofacil/listaDeJogosInclude";
+	}
+	
 	
 }	
