@@ -4,11 +4,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+//@SpringBootApplication 
+//@Configuration
+//@EnableAutoConfiguration
+//@EnableConfigServer
+//@ServiceScan
+//@ComponentScan
+
 @SpringBootApplication 
 /*@Configuration
 @ComponentScan
 @EnableAutoConfiguration
 */
+
 @EnableMongoRepositories(basePackages="br.com.jogatina.lotofacil.domain")
 public class LotoFacilApp {
 	public static void main(String[] args) {
