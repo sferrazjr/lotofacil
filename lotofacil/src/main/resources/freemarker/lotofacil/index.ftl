@@ -16,6 +16,8 @@
     <a href=/lotofacil/incluir>Incluir Concurso</a>
     <br>
     <a href=/lotofacil/listar/0>lista completa dos concursos</a>
+    <br>
+    <a href=/lotofacil/palpiteNoHistorico>palpite</a>
     
   </body>
 

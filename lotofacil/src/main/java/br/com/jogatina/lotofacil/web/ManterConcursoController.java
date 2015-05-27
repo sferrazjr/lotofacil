@@ -1,9 +1,9 @@
 package br.com.jogatina.lotofacil.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jogatina.lotofacil.domain.JogoLotoFacil;
 import br.com.jogatina.lotofacil.domain.LotoFacilRepository;
@@ -21,6 +22,12 @@ public class ManterConcursoController {
 	
 	@Autowired
 	private LotoFacilRepository lotoFacilRepository;
+	
+	@Autowired
+	private MongoTemplate mongoTemplate;
+	
+	@Autowired
+	private BuscaLotoFacilRepository buscaLotoFacilRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -40,29 +47,57 @@ public class ManterConcursoController {
 		return "lotofacil/index";
 	}
 	
-	@RequestMapping(value = "/listar/{page}", method = RequestMethod.GET)
-	public String listar(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer page, Model model ){
+	@RequestMapping(value = "/listar/{pagina}/{buscaNome}", method = RequestMethod.GET)
+	public String listar(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer pagina, @PathVariable String buscaNome, Model model){
 		
-		Pageable pageable = new PageRequest(page, 50, new Sort(Sort.Direction.ASC, "concurso"));
+		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar(buscaNome, pagina));
 		
-		lista.addAttribute( "jogos", lotoFacilRepository.findAll(pageable).getContent());
+		model.addAttribute("pagina", ++pagina);
 		
-		model.addAttribute("pagina", ++page);
+		model.addAttribute("busca", "BuscaTodos");
 		
 		return "lotofacil/listaDeJogos";
 	}
 	
-	@RequestMapping(value = "/listarInclude/{page}", method = RequestMethod.GET)
-	public String listarPageable(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer page, Model model){
+	@RequestMapping(value = "/listarInclude/{pagina}/{buscaNome}", method = RequestMethod.GET)
+	public String listarPageable(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer pagina, @PathVariable String buscaNome, Model model){
 		
-		Pageable pageable = new PageRequest(page, 50, new Sort(Sort.Direction.ASC, "concurso"));
+		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar(buscaNome, pagina));
 		
-		lista.addAttribute( "jogos", lotoFacilRepository.findAll(pageable).getContent());
+		model.addAttribute("pagina", ++pagina);
 		
-		model.addAttribute("pagina", ++page);
+		model.addAttribute("busca", buscaNome);
 		
 		return "lotofacil/listaDeJogosInclude";
 	}
 	
+	@RequestMapping(value = "/palpiteNoHistorico", method = RequestMethod.GET)
+	public String palpiteNoHistorico(){
+		return "lotofacil/numeros";
+	}
+	
+	@RequestMapping(value = "/verificarPalpite", method = RequestMethod.POST)
+	public String verificarPalpite(@RequestParam("numerosSelecionados") List<Integer> numeroSelecionados, @ModelAttribute("lista") ModelMap lista, ModelMap model){
+		
+		try {
+			
+			buscaLotoFacilRepository.setNumeroSelecionados(numeroSelecionados);			
+			
+			lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar("BuscaPalpite", 0));
+			
+			model.addAttribute("pagina", 1);
+			
+			model.addAttribute("busca", "BuscaPalpite");
+			
+			return "lotofacil/listaDeJogos";			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return "lotofacil/index";
+		}
+		
+	}
 	
 }	
