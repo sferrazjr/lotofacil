@@ -25,6 +25,10 @@ public class BuscaLotoFacilRepository {
 	private MongoConfiguration mongoConfiguration;
 	
 	private List<Integer> numeroSelecionados;
+
+	private Integer de;
+
+	private Integer ate;
 	
 	public List<JogoLotoFacil> buscar(String buscaNome, Integer pagina) {
 		Pageable pageable = new PageRequest(pagina, 50, new Sort(Sort.Direction.ASC, "concurso"));
@@ -45,12 +49,33 @@ public class BuscaLotoFacilRepository {
 			}
 			
 		}
+		
+		if(buscaNome.endsWith("DeAte")){
+			try {
+				//org.springframework.data.mongodb.InvalidMongoDbApiUsageException: Due to limitations of the com.mongodb.BasicDBObject, you can't add a second 'concurso' expression specified as 'concurso : { "$lt" : 1200}'. Criteria already contains 'concurso : { "$gte" : 1100}'.
+				//return mongoConfiguration.mongoTemplate().find(query(where("concurso").gte(de).and("concurso").lt(ate)).with(pageable), JogoLotoFacil.class);
+				
+				return mongoConfiguration.mongoTemplate().find(query(where("concurso").gte(de).lt(ate)).with(pageable), JogoLotoFacil.class);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		return null;
 	}
 
 	public void setNumeroSelecionados(List<Integer> numeroSelecionados) {
 		this.numeroSelecionados = numeroSelecionados;
+	}
+
+	public void setDe(Integer de) {
+		this.de = de;
+	}
+
+	public void setAte(Integer ate) {
+		this.ate = ate;
 	}
 
 }

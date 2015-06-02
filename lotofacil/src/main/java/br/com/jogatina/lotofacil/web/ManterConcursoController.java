@@ -1,5 +1,6 @@
 package br.com.jogatina.lotofacil.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +90,7 @@ public class ManterConcursoController {
 			
 			model.addAttribute("busca", "BuscaPalpite");
 			
-			return "lotofacil/listaDeJogos";			
+			return "lotofacil/listaDeJogos";
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -100,4 +101,32 @@ public class ManterConcursoController {
 		
 	}
 	
+	@RequestMapping(value = "/buscarJogos", method = RequestMethod.GET)
+	public String buscarJogos(@ModelAttribute("lista") ModelMap lista, ModelMap model){
+		
+		lista.addAttribute("jogos", new ArrayList<>());
+		
+		model.addAttribute("pagina", 0);
+		
+		model.addAttribute("busca", "oinc");
+		
+		
+		return "lotofacil/formBuscarJogos";
+	}
+	
+	@RequestMapping(value = "/buscarJogos", method = RequestMethod.POST)
+	public String buscarJogos(@RequestParam("de") Integer de, @RequestParam("ate") Integer ate, @ModelAttribute("lista") ModelMap lista, ModelMap model){
+		
+		buscaLotoFacilRepository.setDe(de);
+		
+		buscaLotoFacilRepository.setAte(ate);
+		
+		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar("DeAte", 0));
+		
+		model.addAttribute( "pagina", 1);
+		
+		model.addAttribute( "busca", "DeAte");
+		
+		return "lotofacil/listaDeJogos";
+	}
 }	
