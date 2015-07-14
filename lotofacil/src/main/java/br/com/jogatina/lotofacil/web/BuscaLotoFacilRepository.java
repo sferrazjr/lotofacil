@@ -2,16 +2,23 @@ package br.com.jogatina.lotofacil.web;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Component;
 
 import br.com.jogatina.lotofacil.config.MongoConfiguration;
+import br.com.jogatina.lotofacil.domain.EstatisticaDeJogos;
 import br.com.jogatina.lotofacil.domain.JogoLotoFacil;
 import br.com.jogatina.lotofacil.domain.LotoFacilRepository;
 
@@ -29,6 +36,30 @@ public class BuscaLotoFacilRepository {
 	private Integer de;
 
 	private Integer ate;
+	
+	public List<EstatisticaDeJogos> estaticas(){
+		List<EstatisticaDeJogos> lista = new ArrayList<>();
+		
+		Aggregation agg = newAggregation(
+				//project("bola"),
+				unwind("bolas"),
+				group("bolas").count().as("vezes"),
+				project("vezes").and("bola").previousOperation(),
+				sort(Direction.ASC, previousOperation(), "bola")
+				);
+
+		try {
+			AggregationResults<EstatisticaDeJogos> agregado = mongoConfiguration.mongoTemplate().aggregate(agg, JogoLotoFacil.class, EstatisticaDeJogos.class);
+			
+			lista = agregado.getMappedResults();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
 	
 	public List<JogoLotoFacil> buscar(String buscaNome, Integer pagina) {
 		Pageable pageable = new PageRequest(pagina, 50, new Sort(Sort.Direction.ASC, "concurso"));
