@@ -20,6 +20,8 @@
     <a href=/lotofacil/palpiteNoHistorico>palpite</a>
     <br>
     <a href=/lotofacil/buscarJogos>buscar jogos</a>
+    <br>
+    <a href=/lotofacil/mostrarEstatisca>estatiscas</a>
     
   </body>
 

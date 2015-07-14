@@ -1,3 +1,10 @@
 db.lotofacil.aggregate( [ {$unwind:"$bolas"}, {$group: {_id:{bola: "$bolas"}, vezes: {$sum:1}}},{$sort:{_id:1}} ])
 
 db.lotofacil.aggregate( [ {$unwind:"$bolas"}, {$group: {_id: "$bolas", vezes: {$sum:1} }}  ])
+
+
+db.lotofacil.aggregate( [ 
+	{$unwind:"$bolas"}, 
+	{$group: {_id: "$bolas", vezes: {$sum:1} }}, 
+	{$project: {bola:"$_id", vezes:1, _id:0}},{$sort:{bola:1}}  
+	])

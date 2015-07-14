@@ -129,4 +129,13 @@ public class ManterConcursoController {
 		
 		return "lotofacil/listaDeJogos";
 	}
+	
+
+	@RequestMapping(value = "/mostrarEstatisca", method = RequestMethod.GET)
+	public String mostrarEstatisca(@ModelAttribute("lista") ModelMap lista, ModelMap model){
+		
+		lista.addAttribute( "estatisca", buscaLotoFacilRepository.estaticas() );
+		
+		return "lotofacil/listaEstatistica";
+	}
 }	
