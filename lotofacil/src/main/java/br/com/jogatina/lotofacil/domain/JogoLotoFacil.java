@@ -17,7 +17,7 @@ public class JogoLotoFacil {
 	
 	private double premio;
 	private int ganhadores;
-	private int[] bolas;
+	private int[] numeros;
 	
 	public JogoLotoFacil(){
 		
@@ -28,7 +28,7 @@ public class JogoLotoFacil {
 		this.data = data;
 		this.premio = d;
 		this.ganhadores = j;
-		this.bolas = bolas;
+		this.setNumeros(bolas);
 	}
 	
 	public Integer getConcurso() {
@@ -55,11 +55,14 @@ public class JogoLotoFacil {
 	public void setGanhadores(int ganhadores) {
 		this.ganhadores = ganhadores;
 	}
-	public int[] getBolas() {
-		return bolas;
+
+	public int[] getNumeros() {
+		return numeros;
 	}
-	public void setBolas(int[] bolas) {
-		this.bolas = bolas;
+
+	public void setNumeros(int[] numeros) {
+		this.numeros = numeros;
 	}
+
 
 }

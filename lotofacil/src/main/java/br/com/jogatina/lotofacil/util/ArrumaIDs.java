@@ -49,7 +49,7 @@ public class ArrumaIDs {
 			try {
 				o.append("arrecadacao", Double.parseDouble(doc.getString("arrecadacao")));
 				o.append("ganhadores", Integer.parseInt(doc.getString("ganhadores")));
-				o.append("bolas", doc.get("bolas"));
+				o.append("numeros", doc.get("numeros"));
 				
 				temp.insert(o);
 			} catch (Exception e){

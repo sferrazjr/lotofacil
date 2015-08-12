@@ -2,14 +2,13 @@ package br.com.jogatina.lotofacil.domain;
 
 public class EstatisticaDeJogos {
 
-	private String bola;
+	private String numero;
 	private int vezes;
-	
-	public String getBola() {
-		return bola;
+	public String getNumero() {
+		return numero;
 	}
-	public void setBola(String bola) {
-		this.bola = bola;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 	public int getVezes() {
 		return vezes;
@@ -17,5 +16,6 @@ public class EstatisticaDeJogos {
 	public void setVezes(int vezes) {
 		this.vezes = vezes;
 	}
+	
 	
 }

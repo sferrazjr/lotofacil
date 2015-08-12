@@ -41,11 +41,10 @@ public class BuscaLotoFacilRepository {
 		List<EstatisticaDeJogos> lista = new ArrayList<>();
 		
 		Aggregation agg = newAggregation(
-				//project("bola"),
-				unwind("bolas"),
-				group("bolas").count().as("vezes"),
-				project("vezes").and("bola").previousOperation(),
-				sort(Direction.ASC, previousOperation(), "bola")
+				unwind("numeros"),
+				group("numeros").count().as("vezes"),
+				project("vezes").and("numero").previousOperation(),
+				sort(Direction.ASC, previousOperation(), "numero")
 				);
 
 		try {
@@ -72,7 +71,7 @@ public class BuscaLotoFacilRepository {
 			
 			try {
 				
-				return mongoConfiguration.mongoTemplate().find(query(where("bolas").all(numeroSelecionados)).with(pageable), JogoLotoFacil.class);
+				return mongoConfiguration.mongoTemplate().find(query(where("numeros").all(numeroSelecionados)).with(pageable), JogoLotoFacil.class);
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

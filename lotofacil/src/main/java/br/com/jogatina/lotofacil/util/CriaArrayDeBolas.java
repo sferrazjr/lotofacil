@@ -47,7 +47,7 @@ public class CriaArrayDeBolas {
 			bolas.add(doc.getInt("Bola14"));
 			bolas.add(doc.getInt("Bola15"));
 			
-			o.append("Bolas", bolas);
+			o.append("numeros", bolas);
 
 			lotofacilCollection.update(new BasicDBObject("_id", doc.getString("_id")), o);
 
