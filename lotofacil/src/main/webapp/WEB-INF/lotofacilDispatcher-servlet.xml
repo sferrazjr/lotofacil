@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"    
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    					http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+    					http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+ 
+
+	<bean class="br.com.jogatina.lotofacil.web.ManterConcursoController" />
+    <context:component-scan base-package="br.com.jogatina.lotofacil" />
+
+	<!-- mongo:db-factory
+		id="mongoDbFactory" 
+		dbname="jogatina" 
+		host="ds039020.mongolab.com" port="39020" 
+		username="app-user" password="abc12345" 
+		write-concern="SAFE"/>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+	</bean>
+
+	<mongo:repositories base-package="br.com.jogatina.lotofacil.domain"  -->
+	
+    <!-- freemarker config 
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+      <property name="templateLoaderPath" value="classpath:/freemarker/"/>
+    </bean-->
+     
+    <!-- 
+      View resolvers can also be configured with ResourceBundles or XML files. If you need
+      different view resolving based on Locale, you have to use the resource bundle resolver.
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+      <property name="cache" value="true"/>
+      <property name="prefix" value=""/>
+      <property name="suffix" value=".ftl"/>
+    </bean-->
+    
+    <!--  mvc:annotation-driven/>
+    
+    <mvc:view-resolvers>
+    	<mvc:freemarker/>
+    </mvc:view-resolvers -->
+    
+
+          
+</beans>
