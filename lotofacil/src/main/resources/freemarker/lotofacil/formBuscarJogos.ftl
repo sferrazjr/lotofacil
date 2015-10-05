@@ -13,11 +13,11 @@
     <script src="/scripts/jquery.jscroll.js"></script>
 
 
-    <a href=/lotofacil/incluir>Incluir Concurso</a>
+    <a href=/jogatina/incluir>Incluir Concurso</a>
     <br>
-    <a href=/lotofacil/>Inicio</a>
+    <a href=/jogatina/>Inicio</a>
     
-    <form name="buscaJogos" method="post" action="/lotofacil/buscarJogos">
+    <form name="buscaJogos" method="post" action="/jogatina/buscarJogos">
     	
     	De: <input type="text" name="de"/> até <input type="text" name="ate"/> <input type="submit"> 
     

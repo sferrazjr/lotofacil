@@ -2,23 +2,23 @@ package br.com.jogatina.lotofacil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 
-//@EnableAutoConfiguration(exclude={FreeMarkerAutoConfiguration.class})
-//@ComponentScan(basePackages="br.com.jogatina.lotofacil.config")
-//@EnableMongoRepositories(basePackages="br.com.jogatina.lotofacil.domain")
-//@ConditionalOnClass(LotofacilAppConfiguration.class)
 @SpringBootApplication
-public class LotoFacilApp { 
+@EnableMongoRepositories(basePackages="br.com.jogatina.lotofacil.domain")
+public class LotoFacilApp {
 //extends SpringBootServletInitializer { 
 //{//implements WebApplicationInitializer {
 
 	public static void main(String[] args) {
 		
 	    SpringApplication app = new SpringApplication(LotoFacilApp.class);
-	    //app.setShowBanner(false);
+	    app.setShowBanner(false);
 	    app.run(args);		
 	}
+
+
 
 //	@Override
 //	public SpringApplicationBuilder configure(SpringApplicationBuilder application){

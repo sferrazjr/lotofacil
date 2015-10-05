@@ -12,7 +12,7 @@
 
   <body>
     <h2>Numeros</h2>
-    <form name="palpite" method="post" action="/lotofacil/verificarPalpite">
+    <form name="palpite" method="post" action="/jogatina/verificarPalpite">
       <table>
         <tr>
           <td>

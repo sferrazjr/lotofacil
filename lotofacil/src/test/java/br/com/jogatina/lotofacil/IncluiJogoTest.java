@@ -24,7 +24,7 @@ public class IncluiJogoTest {
 
 	@Test
 	public void incluiJogo() throws ParseException {
-		int concurso = 1172;
+		int concurso = 9999;
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date data = formatter.parse("2015-02-18");

@@ -14,21 +14,20 @@ import com.mongodb.WriteConcern;
 
 @Configuration
 @ComponentScan
-@EnableMongoRepositories
+@EnableMongoRepositories(basePackages="br.com.jogatina.lotofacil.domain")
 public class MongoConfiguration {
-
-	@Bean
-	public MongoDbFactory mongoDbFactory() throws Exception {
-    	UserCredentials userCredentials = new UserCredentials("app-user","abc12345");
-    	return new SimpleMongoDbFactory(new MongoClient("ds039020.mongolab.com",39020), "jogatina", userCredentials) ;
-	}
-
-	@Bean
-	public MongoTemplate mongoTemplate() throws Exception {
-		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory());
-		mongoTemplate.setWriteConcern(WriteConcern.SAFE);
-		return mongoTemplate; 
-	}
+	
+//	@Bean
+//	public MongoTemplate mongoTemplate() throws Exception {
+//		
+//		MongoClient mongoClient = new MongoClient("ds029224.mongolab.com");
+//		
+//		UserCredentials userCredentials = new UserCredentials("app-user","java");
+//		
+//		MongoTemplate mongoTemplate = new Mo
+//		mongoTemplate.setWriteConcern(WriteConcern.SAFE);
+//		return mongoTemplate; 
+//	}
 	
 	
 }

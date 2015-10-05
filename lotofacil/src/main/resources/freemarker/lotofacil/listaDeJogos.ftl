@@ -13,9 +13,9 @@
     <script src="/scripts/jquery.jscroll.js"></script>
 
 
-    <a href=/lotofacil/incluir>Incluir Concurso</a>
+    <a href=/jogatina/incluir>Incluir Concurso</a>
     <br>
-    <a href=/lotofacil/>Inicio</a>
+    <a href=/jogatina/>Inicio</a>
     
     
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,20 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.jogatina.lotofacil.domain.JogoLotoFacil;
-import br.com.jogatina.lotofacil.domain.LotoFacilRepository;
+import br.com.jogatina.lotofacil.service.LotoFacilService;
 
 @Controller
-@RequestMapping("/lotofacil")
 public class ManterConcursoController {
 	
+	private final LotoFacilService lotoFacilService;
+
 	@Autowired
-	private LotoFacilRepository lotoFacilRepository;
-	
-	@Autowired
-	private MongoTemplate mongoTemplate;
-	
-	@Autowired
-	private BuscaLotoFacilRepository buscaLotoFacilRepository;
+	public ManterConcursoController(LotoFacilService lotoFacilService) {
+		this.lotoFacilService = lotoFacilService;
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -43,7 +39,7 @@ public class ManterConcursoController {
 	@RequestMapping(value = "/incluir", method = RequestMethod.POST)
 	public String incluirSubmit(@ModelAttribute("jogoLotoFacil") JogoLotoFacil jogoLotoFacil) {
 		
-		lotoFacilRepository.save(jogoLotoFacil);
+		lotoFacilService.save(jogoLotoFacil);
 		
 		return "lotofacil/index";
 	}
@@ -51,7 +47,7 @@ public class ManterConcursoController {
 	@RequestMapping(value = "/listar/{pagina}/{buscaNome}", method = RequestMethod.GET)
 	public String listar(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer pagina, @PathVariable String buscaNome, Model model){
 		
-		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar(buscaNome, pagina));
+		lista.addAttribute( "jogos", lotoFacilService.buscar(buscaNome, pagina));
 		
 		model.addAttribute("pagina", ++pagina);
 		
@@ -63,7 +59,7 @@ public class ManterConcursoController {
 	@RequestMapping(value = "/listarInclude/{pagina}/{buscaNome}", method = RequestMethod.GET)
 	public String listarPageable(@ModelAttribute("lista") ModelMap lista, @PathVariable Integer pagina, @PathVariable String buscaNome, Model model){
 		
-		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar(buscaNome, pagina));
+		lista.addAttribute( "jogos", lotoFacilService.buscar(buscaNome, pagina));
 		
 		model.addAttribute("pagina", ++pagina);
 		
@@ -82,9 +78,9 @@ public class ManterConcursoController {
 		
 		try {
 			
-			buscaLotoFacilRepository.setNumeroSelecionados(numeroSelecionados);			
+			lotoFacilService.setNumeroSelecionados(numeroSelecionados);			
 			
-			lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar("BuscaPalpite", 0));
+			lista.addAttribute( "jogos", lotoFacilService.buscar("BuscaPalpite", 0));
 			
 			model.addAttribute("pagina", 1);
 			
@@ -117,11 +113,11 @@ public class ManterConcursoController {
 	@RequestMapping(value = "/buscarJogos", method = RequestMethod.POST)
 	public String buscarJogos(@RequestParam("de") Integer de, @RequestParam("ate") Integer ate, @ModelAttribute("lista") ModelMap lista, ModelMap model){
 		
-		buscaLotoFacilRepository.setDe(de);
+		lotoFacilService.setDe(de);
 		
-		buscaLotoFacilRepository.setAte(ate);
+		lotoFacilService.setAte(ate);
 		
-		lista.addAttribute( "jogos", buscaLotoFacilRepository.buscar("DeAte", 0));
+		lista.addAttribute( "jogos", lotoFacilService.buscar("DeAte", 0));
 		
 		model.addAttribute( "pagina", 1);
 		
@@ -131,11 +127,13 @@ public class ManterConcursoController {
 	}
 	
 
-	@RequestMapping(value = "/mostrarEstatisca", method = RequestMethod.GET)
-	public String mostrarEstatisca(@ModelAttribute("lista") ModelMap lista, ModelMap model){
+	@RequestMapping(value = "/mostrarEstatistica", method = RequestMethod.GET)
+	public String mostrarEstatistica(@ModelAttribute("lista") ModelMap lista, ModelMap model){
 		
-		lista.addAttribute( "estatisca", buscaLotoFacilRepository.estaticas() );
+		lista.addAttribute( "estatisca", lotoFacilService.estaticas() );
 		
 		return "lotofacil/listaEstatistica";
 	}
+	
+
 }	

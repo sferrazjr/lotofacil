@@ -12,7 +12,7 @@
   
     <body>
     <h2>Numeros</h2>
-    <form name="jogoLotoFacil" method="post" action="/lotofacil/incluir">
+    <form name="jogoLotoFacil" method="post" action="/jogatina/incluir">
   		Concurso: <input type="text" name="concurso" maxvalue="6" size="6">
   		<br>
   		Data: <input type="text" name="data">
@@ -21,22 +21,22 @@
   		<br>
   		Ganhadores: <input type="text" name="ganhadores">
   		<br>
-  		Bolas:
-  		<input type="text" name="bolas[0]">&nbsp;
-  		<input type="text" name="bolas[1]">&nbsp;
-  		<input type="text" name="bolas[2]">&nbsp;
-  		<input type="text" name="bolas[3]">&nbsp;
-  		<input type="text" name="bolas[4]">&nbsp;
-  		<input type="text" name="bolas[5]">&nbsp;
-  		<input type="text" name="bolas[6]">&nbsp;
-  		<input type="text" name="bolas[7]">&nbsp;
-  		<input type="text" name="bolas[8]">&nbsp;
-  		<input type="text" name="bolas[9]">&nbsp;
-  		<input type="text" name="bolas[10]">&nbsp;
-  		<input type="text" name="bolas[11]">&nbsp;
-  		<input type="text" name="bolas[12]">&nbsp;
-  		<input type="text" name="bolas[13]">&nbsp;
-  		<input type="text" name="bolas[14]">&nbsp;
+  		Numeros:
+  		<input type="text" name="numeros[0]">&nbsp;
+  		<input type="text" name="numeros[1]">&nbsp;
+  		<input type="text" name="numeros[2]">&nbsp;
+  		<input type="text" name="numeros[3]">&nbsp;
+  		<input type="text" name="numeros[4]">&nbsp;
+  		<input type="text" name="numeros[5]">&nbsp;
+  		<input type="text" name="numeros[6]">&nbsp;
+  		<input type="text" name="numeros[7]">&nbsp;
+  		<input type="text" name="numeros[8]">&nbsp;
+  		<input type="text" name="numeros[9]">&nbsp;
+  		<input type="text" name="numeros[10]">&nbsp;
+  		<input type="text" name="numeros[11]">&nbsp;
+  		<input type="text" name="numeros[12]">&nbsp;
+  		<input type="text" name="numeros[13]">&nbsp;
+  		<input type="text" name="numeros[14]">&nbsp;
 
         <input type="submit">
     </form>
