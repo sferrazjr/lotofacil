@@ -9,8 +9,8 @@
   </head>
   
     <body>
-    <script src="/scripts/jquery-1.11.2.js"></script>
-    <script src="/scripts/jquery.jscroll.js"></script>
+    <script src="/lotofacil/scripts/jquery-1.11.2.js"></script>
+    <script src="/lotofacil/scripts/jquery.jscroll.js"></script>
 
 
     <a href=/jogatina/incluir>Incluir Concurso</a>

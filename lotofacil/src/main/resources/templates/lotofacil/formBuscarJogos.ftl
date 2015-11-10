@@ -3,21 +3,25 @@
 <html>
   <head>
  <meta charset="utf-8">    
-    <title>LotoFacil - Lista de Jogos</title>
+    <title>LotoFacil - Busca de Jogos</title>
     
 
   </head>
   
     <body>
-    <script src="/scripts/jquery-1.11.2.js"></script>
-    <script src="/scripts/jquery.jscroll.js"></script>
+    <script src="/lotofacil/scripts/jquery-1.11.2.js"></script>
+    <script src="/lotofacil/scripts/jquery.jscroll.js"></script>
 
 
     <a href=/jogatina/incluir>Incluir Concurso</a>
     <br>
     <a href=/jogatina/>Inicio</a>
     
+    <form name="buscaJogos" method="post" action="/jogatina/buscarJogos">
+    	
+    	De: <input type="text" name="de"/> até <input type="text" name="ate"/> <input type="submit"> 
     
+    </form>
 
     <div class="scroll" style="border:1px solid red;">
 		<#include "/lotofacil/listaDeJogosInclude.ftl" />	
@@ -26,7 +30,7 @@
 
 <form class="nextPageForm" method="get">
 
-	<input class="nextButton" type="button" value=" next " />
+	<input class="nextButton" type="button" value=" next 3 " />
 	
 </form>
 
