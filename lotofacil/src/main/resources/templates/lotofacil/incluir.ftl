@@ -12,7 +12,7 @@
   
     <body>
     <h2>Numeros</h2>
-    <form name="jogoLotoFacil" method="post" action="/jogatina/incluir">
+    <form name="jogoLotoFacil" method="post" action="/lotofacil/incluir">
   		Concurso: <input type="text" name="concurso" maxvalue="6" size="6">
   		<br>
   		Data: <input type="text" name="data">

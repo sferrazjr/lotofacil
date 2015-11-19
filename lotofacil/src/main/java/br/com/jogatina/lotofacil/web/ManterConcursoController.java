@@ -100,11 +100,11 @@ public class ManterConcursoController {
 	@RequestMapping(value = "/buscarJogos", method = RequestMethod.GET)
 	public String buscarJogos(@ModelAttribute("lista") ModelMap lista, ModelMap model){
 		
-		lista.addAttribute("jogos", new ArrayList<>());
+		lista.addAttribute("jogos", new ArrayList<Object>());
 		
 		model.addAttribute("pagina", 0);
 		
-		model.addAttribute("busca", "oinc");
+		model.addAttribute("busca", "");
 		
 		
 		return "lotofacil/formBuscarJogos";

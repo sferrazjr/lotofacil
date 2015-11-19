@@ -13,15 +13,15 @@
     <body>
     <h2>Manter Concurso da Lotofacil</h2>
     
-    <a href=/jogatina/incluir>Incluir Concurso</a>
+    <a href=/lotofacil/incluir>Incluir Concurso</a>
     <br>
-    <a href=/jogatina/listar/0>lista completa dos concursos</a>
+    <a href=/lotofacil/listar/0>lista completa dos concursos</a>
     <br>
-    <a href=/jogatina/palpiteNoHistorico>palpite</a>
+    <a href=/lotofacil/palpiteNoHistorico>palpite</a>
     <br>
-    <a href=/jogatina/buscarJogos>buscar jogos</a>
+    <a href=/lotofacil/buscarJogos>buscar jogos</a>
     <br>
-    <a href=/jogatina/mostrarEstatistica>estatiscas</a>
+    <a href=/lotofacil/mostrarEstatistica>estatiscas</a>
     
   </body>
 

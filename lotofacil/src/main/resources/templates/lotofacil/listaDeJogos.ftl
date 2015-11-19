@@ -13,9 +13,9 @@
     <script src="/lotofacil/scripts/jquery.jscroll.js"></script>
 
 
-    <a href=/jogatina/incluir>Incluir Concurso</a>
+    <a href=/lotofacil/incluir>Incluir Concurso</a>
     <br>
-    <a href=/jogatina/>Inicio</a>
+    <a href=/lotofacil/>Inicio</a>
     
     
 
@@ -26,7 +26,7 @@
 
 <form class="nextPageForm" method="get">
 
-	<input class="nextButton" type="button" value=" next 5 " />
+	<input class="nextButton" type="button" value=" next " />
 	
 </form>
 

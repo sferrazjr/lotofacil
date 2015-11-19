@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -42,12 +41,8 @@ public class LotoFacilServiceImpl implements LotoFacilService {
 
 	private Integer ate;
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#estaticas()
-	 */
-	@Override
 	public List<EstatisticaDeJogos> estaticas(){
-		List<EstatisticaDeJogos> lista = new ArrayList<>();
+		List<EstatisticaDeJogos> lista = new ArrayList<EstatisticaDeJogos>();
 
 		Aggregation agg = newAggregation(
 				unwind("numeros"),
@@ -69,10 +64,6 @@ public class LotoFacilServiceImpl implements LotoFacilService {
 		return lista;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#buscar(java.lang.String, java.lang.Integer)
-	 */
-	@Override
 	public List<JogoLotoFacil> buscar(String buscaNome, Integer pagina) {
 		Pageable pageable = new PageRequest(pagina, 50, new Sort(Sort.Direction.ASC, "concurso"));
 
@@ -109,34 +100,18 @@ public class LotoFacilServiceImpl implements LotoFacilService {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#setNumeroSelecionados(java.util.List)
-	 */
-	@Override
 	public void setNumeroSelecionados(List<Integer> numeroSelecionados) {
 		this.numeroSelecionados = numeroSelecionados;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#setDe(java.lang.Integer)
-	 */
-	@Override
 	public void setDe(Integer de) {
 		this.de = de;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#setAte(java.lang.Integer)
-	 */
-	@Override
 	public void setAte(Integer ate) {
 		this.ate = ate;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.jogatina.lotofacil.service.LotoFacilService#save(br.com.jogatina.lotofacil.domain.JogoLotoFacil)
-	 */
-	@Override
 	public void save(JogoLotoFacil jogoLotoFacil) {
 		
 		mongoOperation.save(jogoLotoFacil);

@@ -23,11 +23,11 @@
 <br>
     </#list>
 
-${pagina}<br/>
-${busca}
+
+<!--${pagina} ${busca}-->
 
 <span class="nextAction" style="visibility: hidden">
-/jogatina/listarInclude/${pagina}/${busca}
+/lotofacil/listarInclude/${pagina}/${busca}
 </span> 
 <br>
 

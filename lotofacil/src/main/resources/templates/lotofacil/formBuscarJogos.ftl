@@ -13,11 +13,11 @@
     <script src="/lotofacil/scripts/jquery.jscroll.js"></script>
 
 
-    <a href=/jogatina/incluir>Incluir Concurso</a>
+    <a href=/lotofacil/incluir>Incluir Concurso</a>
     <br>
-    <a href=/jogatina/>Inicio</a>
+    <a href=/lotofacil/>Inicio</a>
     
-    <form name="buscaJogos" method="post" action="/jogatina/buscarJogos">
+    <form name="buscaJogos" method="post" action="/lotofacil/buscarJogos">
     	
     	De: <input type="text" name="de"/> até <input type="text" name="ate"/> <input type="submit"> 
     
@@ -30,7 +30,7 @@
 
 <form class="nextPageForm" method="get">
 
-	<input class="nextButton" type="button" value=" next 3 " />
+	<input class="nextButton" type="button" value=" next " />
 	
 </form>
 

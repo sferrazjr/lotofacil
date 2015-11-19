@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import br.com.jogatina.lotofacil.config.MongoConfiguration;
 import br.com.jogatina.lotofacil.domain.JogoLotoFacil;
 import br.com.jogatina.lotofacil.domain.LotoFacilRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { MongoConfiguration.class })
+@ContextConfiguration(classes = { LotoFacilRepository.class })
 public class IncluiJogoTest {
 	
 	@Autowired
